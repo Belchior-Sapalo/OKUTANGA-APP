@@ -81,7 +81,7 @@ export default function Pesquisa(){
             )
         }else{
             return (
-                <View>
+                <View style={styles.dadosContainer}>
                     <FlatList
                         data={resultados}
                         renderItem={({item})=>
@@ -142,10 +142,12 @@ export default function Pesquisa(){
     return(
         <View style={styles.container} key={chave}>
              <View style={styles.searchContainer}>
+                    <FontAwesome name='search' color='#DF6E1A' size={25}/>
                  <TextInput
                      style={styles.input}
-                     placeholder='Pesquisar'
-                     placeholderTextColor='#eaeaea'
+                     placeholder='Pesquisar por uma palavra'
+                     placeholderTextColor='rgba(0,0,0,.2)'
+                     selectionColor='#DF6E1A'
                      autoFocus={true}
                      onChangeText={setInto}
                      value={into}
@@ -163,42 +165,41 @@ export default function Pesquisa(){
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: '#ffff'
     },
-    text: {
-        fontSize: 20,
-        fontWeight: 'bold'
+    dadosContainer: {
     },
     searchContainer: {
-        backgroundColor: '#00A896',
         justifyContent: 'space-between',
         flexDirection: 'row',
         alignItems: 'center',
-        paddingStart: 20,
-        paddingEnd: 20
+        paddingHorizontal: 15,
+        marginVertical: 10,
+        marginHorizontal: 15,
+        marginBottom: 10,
+        borderWidth: .5,
+        borderRadius: 5,
+        borderRadius: 10,
     },
     input: {
-        padding: 15,
-        color: '#eaeaea',
-        fontSize: 18,
-        width: 300
-    },
-    searchBtn: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderLeftWidth: 1,
         padding: 10,
-        borderLeftColor: '#eaeaea'
+        color: '#000',
+        fontSize: 18,
+        width: '100%',
+        borderLeftWidth: .2,
+        marginStart: 10
     },
     result: {
-        padding: 18,
-        backgroundColor: '#0d0d06',
+        padding: 15,
+        backgroundColor: '#FFFF',
         borderBottomWidth: 1,
-        borderBottomColor: 'rgb(222, 222, 222)'
+        borderBottomColor: 'rgb(222, 222, 222)',
+        paddingStart: 20
     },
     resultText: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: '#eaeaea'
+        fontSize: 14,
+        color: '#000',
+        fontWeight: '500'
     },
     modal: {
         flex: 1,
@@ -206,7 +207,7 @@ const styles = StyleSheet.create({
         padding: 14
     },
     closeModalBtn: {
-        backgroundColor: '#FF6B35',
+        backgroundColor: '#DF6E1A',
         width: 40,
         height: 40,
         alignSelf: 'flex-end',
@@ -215,7 +216,7 @@ const styles = StyleSheet.create({
         borderRadius: 5
     },
     palavraPortugues: {
-        fontSize: 20,
+        fontSize: 25,
         fontWeight: 'bold',
         marginBottom: 14,
         borderBottomWidth: 1,
@@ -223,6 +224,7 @@ const styles = StyleSheet.create({
         padding: 14
     },
     significado: {
-        padding: 14
+        padding: 14,
+        fontSize: 18
     },
 })

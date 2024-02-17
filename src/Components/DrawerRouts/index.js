@@ -3,13 +3,15 @@ import {
     FontAwesome,
     MaterialCommunityIcons,
     AntDesign,
+    MaterialIcons
 } from '@expo/vector-icons'
 import {
     View,
     Text,
     TouchableOpacity,
     StyleSheet,
-    Button
+    Button,
+    StatusBar
 } from 'react-native'
 import {useNavigation} from '@react-navigation/native'
 import Home from '../../Screens/Home';
@@ -18,17 +20,18 @@ import Configuracoes from '../../Screens/Configuracoes';
 import Tradutor from '../../Screens/Tradutor';
 import AppLogo from '../AppLogo';
 import Contactar from '../../Screens/Contactar';
+import Adm from '../../Screens/Adm';
 
 const MenuToggler = ()=>{
     const navigation = useNavigation();
 
     return(
-        <View style={styles.container}>
+        <View style={styles.togglerContainer}>
             <TouchableOpacity
                 onPress={()=> navigation.toggleDrawer()}
                 activeOpacity={1}
             >
-                <FontAwesome name='bars' size={25} color='#eaeaea'/>
+                <FontAwesome name='bars' size={30} color='#DF6E1A'/>
             </TouchableOpacity>
         </View>
     )
@@ -44,11 +47,11 @@ const Drawer = createDrawerNavigator();
 
 export default function DrawerRouter(){
     return(
-        <Drawer.Navigator 
+        <Drawer.Navigator
             initialRouteName='Home'
             screenOptions={{
                 headerStyle: {
-                    backgroundColor: '#00A896',
+                    backgroundColor: '#EDF0EF',
                 },
                 headerTitleStyle: {
                     fontSize: 20
@@ -65,7 +68,7 @@ export default function DrawerRouter(){
                     borderBottomWidth: 1,
                 },
                 drawerActiveBackgroundColor: '#eaeaea',
-                drawerActiveTintColor: '#00A896'
+                drawerActiveTintColor: '#DF6E1A'
             }}
         >
             <Drawer.Screen name='Home'component={Home}
@@ -75,7 +78,7 @@ export default function DrawerRouter(){
                         drawerIcon: ({focused, color})=>(
                             <FontAwesome 
                                 name='home'
-                                color={focused ? '#00A896': color}
+                                color={focused ? '#DF6E1A': color}
                                 size={25}
                             />
                         )
@@ -91,7 +94,7 @@ export default function DrawerRouter(){
                         drawerIcon: ({focused, color})=>(
                             <MaterialCommunityIcons 
                                 name='translate'
-                                color={focused ? '#00A896': color}  
+                                color={focused ? '#DF6E1A': color}  
                                 size={25}
                             />
                         )
@@ -107,7 +110,7 @@ export default function DrawerRouter(){
                         drawerIcon: ({focused, size, color})=>(
                             <FontAwesome 
                                 name='search'
-                                color={focused ? '#00A896': color}  
+                                color={focused ? '#DF6E1A': color}  
                                 size={25}
                             />
                         )
@@ -119,11 +122,14 @@ export default function DrawerRouter(){
                 component={Contactar}
                 options={
                     {
+                        headerStyle:{
+                            backgroundColor: '#000'
+                        },
                         headerTitle: '',
                         drawerIcon: ({focused, size, color})=>(
                             <FontAwesome 
                                 name='phone'
-                                color={focused ? '#00A896': color}  
+                                color={focused ? '#DF6E1A': color}  
                                 size={25}
                             />
                         )
@@ -139,7 +145,23 @@ export default function DrawerRouter(){
                         drawerIcon: ({focused, size, color})=>(
                             <FontAwesome 
                                 name='gear'
-                                color={focused ? '#00A896': color}  
+                                color={focused ? '#DF6E1A': color}  
+                                size={25}
+                            />
+                        )
+                    }
+                }
+            />
+            <Drawer.Screen 
+                name='Admistrador'
+                component={Adm}
+                options={
+                    {
+                        headerTitle: '',
+                        drawerIcon: ({focused, size, color})=>(
+                            <MaterialIcons 
+                                name='admin-panel-settings'
+                                color={focused ? '#DF6E1A': color}  
                                 size={25}
                             />
                         )
@@ -151,11 +173,11 @@ export default function DrawerRouter(){
 }
 
 const styles = StyleSheet.create({
-    container: {
+    togglerContainer: {
         flexDirection: 'row',
         padding: 10,
         marginStart: 14,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
 })

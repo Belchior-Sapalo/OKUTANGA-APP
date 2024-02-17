@@ -147,15 +147,16 @@ const styles = StyleSheet.create({
     responseContainer: {
     },
     response: {
-        padding: 18,
-        backgroundColor: '#0d0d06',
+        padding: 14,
+        backgroundColor: '#FFFF',
         borderBottomWidth: 1,
-        borderBottomColor: 'rgb(222, 222, 222)'
+        borderBottomColor: 'rgb(222, 222, 222)',
+        paddingStart: 20
     },
     responseText: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: '#eaeaea'
+        fontSize: 15,
+        color: '#000',
+        fontWeight: '500'
     },
     modal: {
         flex: 1,
@@ -181,7 +182,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
     },
     closeModalBtn: {
-        backgroundColor: '#FF6B35',
+        backgroundColor: '#DF6E1A',
         width: 40,
         height: 40,
         alignSelf: 'flex-end',

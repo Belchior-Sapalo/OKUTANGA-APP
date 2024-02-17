@@ -14,7 +14,7 @@ export default function AppLogo( {color, sizeIcon, sizeText} ){
             }]}>
                 OKUTANGA
             </Text>
-            <FontAwesome5 name='user-graduate' size={sizeIcon ? sizeIcon: 30} color={color ? color : '#eaeaea'}/>
+            <FontAwesome5 name='user-graduate' size={sizeIcon ? sizeIcon: 30} color={color ? color : '#DF6E1A'}/>
         </View>
     )
 }
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#eaeaea',
+        color: '#DF6E1A',
         marginRight: 10,
     }
 })

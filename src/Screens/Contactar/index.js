@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: '#0d0d06',
+        backgroundColor: '#000',
         paddingVertical: 50
     },
     copy: {

@@ -10,10 +10,9 @@ export default function App() {
 }
 
 /**
- * --primary-color:#139FCB;
-    --secondary-color:#00A896;
-    --accen-color:#FF6B35;
-    --second-color:#004080;
-    --natural-color: #EAEAEA;
-    --dark-color:#0d0d06;
+ *#EDF0EF
+ #DF6E1A
+ #2B7595
+ #FFFFFF
+ #000000
  */

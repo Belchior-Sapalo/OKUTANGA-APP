@@ -26,7 +26,7 @@ export default function Error( {route} ){
                     Falha ao requisitar dados
                 </Text>
                 <Text style={styles.errorDica}>
-                    Verifique sua conexão a internet
+                    Verifique sua conexão a internet ou reinicie o aplicativo
                 </Text>
             </View>
             {/* <TouchableOpacity 
