@@ -1,20 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native'
+import DrawerRouter from './src/Components/DrawerRouts';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <DrawerRouter />
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+/**
+ * --primary-color:#139FCB;
+    --secondary-color:#00A896;
+    --accen-color:#FF6B35;
+    --second-color:#004080;
+    --natural-color: #EAEAEA;
+    --dark-color:#0d0d06;
+ */
