@@ -36,6 +36,7 @@ export default function Adm(){
                 autoFocus={true}
                 value={email}
                 onChangeText={setEmail}
+                keyboardType="email-address"
                 
            />
            <TextInput
