@@ -20,7 +20,7 @@ import Configuracoes from '../../Screens/Configuracoes';
 import Tradutor from '../../Screens/Tradutor';
 import AppLogo from '../AppLogo';
 import Contactar from '../../Screens/Contactar';
-import Adm from '../../Screens/Adm';
+import Adm from '../../Screens/AdmForm';
 
 const MenuToggler = ()=>{
     const navigation = useNavigation();
