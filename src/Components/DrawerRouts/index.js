@@ -15,14 +15,11 @@ import {
     StatusBar
 } from 'react-native'
 import {useNavigation} from '@react-navigation/native'
-import Dicionario from '../../Screens/Dicionario';
-import Pesquisa from '../../Screens/Pesquisa';
 import Configuracoes from '../../Screens/Configuracoes';
 import Tradutor from '../../Screens/Tradutor';
 import AppLogo from '../AppLogo';
 import Contactar from '../../Screens/Contactar';
 import Adm from '../../Screens/AdmForm';
-import Home from '../../Screens/Home';
 import StackRouter from '../StackRouts';
 
 const MenuToggler = ()=>{
@@ -82,52 +79,6 @@ export default function DrawerRouter(){
                             <FontAwesome 
                                 name='home'
                                 color={focused ? '#DF6E1A': color}
-                                size={25}
-                            />
-                        )
-                    }
-                }
-            />
-            <Drawer.Screen name='Dicionario'component={Dicionario}
-                options={
-                    {
-                        headerTitle: '',
-                        drawerIcon: ({focused, color})=>(
-                            <FontAwesome5 
-                                name='book-reader'
-                                color={focused ? '#DF6E1A': color}
-                                size={25}
-                            />
-                        )
-                    }
-                }
-            />
-            <Drawer.Screen 
-                name='Tradutor'
-                component={Tradutor}
-                options={
-                    {
-                        headerTitle: '',
-                        drawerIcon: ({focused, color})=>(
-                            <MaterialCommunityIcons 
-                                name='translate'
-                                color={focused ? '#DF6E1A': color}  
-                                size={25}
-                            />
-                        )
-                    }
-                }
-            />
-            <Drawer.Screen 
-                name='Pesquisa'
-                component={Pesquisa}
-                options={
-                    {
-                        headerTitle: '',
-                        drawerIcon: ({focused, size, color})=>(
-                            <FontAwesome 
-                                name='search'
-                                color={focused ? '#DF6E1A': color}  
                                 size={25}
                             />
                         )

@@ -4,7 +4,8 @@ import {
     StyleSheet,
     StatusBar,
     TextInput,
-    TouchableOpacity
+    TouchableOpacity,
+    SafeAreaView
 } from 'react-native';
 
 import {FontAwesome, MaterialIcons} from '@expo/vector-icons'
@@ -61,7 +62,7 @@ export default function Adm(){
     }
 
     return(
-        <View style={styles.admInputContainer}>
+        <SafeAreaView style={styles.admInputContainer}>
             <View style={styles.response}>
                 {
                     response ? (
@@ -107,7 +108,7 @@ export default function Adm(){
                 </Text>
            </TouchableOpacity>
 
-        </View>
+        </SafeAreaView>
             
     )
 }

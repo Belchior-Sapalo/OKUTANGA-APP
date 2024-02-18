@@ -4,7 +4,8 @@ import {
     StyleSheet,
     StatusBar,
     TouchableOpacity,
-    ScrollView
+    ScrollView,
+    Linking
 } from 'react-native';
 
 import {NavigationContainer, useNavigation} from '@react-navigation/native'
@@ -12,46 +13,71 @@ import {
     Entypo,
     MaterialCommunityIcons,
     MaterialIcons,
-    FontAwesome
+    FontAwesome,
+    FontAwesome5,
+    Feather
 } from '@expo/vector-icons'
 
 
 
 export default function Links(){
     const navigation = useNavigation()
+    function abrirLink(){
+        Linking.openURL('https://pt.wikipedia.org/wiki/L%C3%ADngua_umbundo#Invent%C3%A1rio_Fon%C3%A9tico')
+    }
     return(
-            <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={styles.btnContainer}>
-                <View style={styles.btn}>
-                    <TouchableOpacity style={styles.btnIcon} onPress={()=> navigation.navigate('Abecedario')}>
-                        <MaterialCommunityIcons name='translate' size={40} color='#DF6E1A'/>
-                    </TouchableOpacity>
+            <ScrollView showsHorizontalScrollIndicator={false} style={styles.btnContainer}>
+                <View>
+                    <TouchableOpacity style={styles.btn} activeOpacity={.7} onPress={()=> navigation.navigate('Dicionario')}>
+                        <View style={styles.btnIcon}>
+                            <FontAwesome5 name='book-reader' size={35} color='#DF6E1A'/>
+                        </View>
                     <Text style={styles.btnName}>
-                        Abecedário
+                        Dicionário
                     </Text>
+                    </TouchableOpacity>
                 </View>
-                <View style={styles.btn}>
-                    <TouchableOpacity style={styles.btnIcon} onPress={()=> navigation.navigate('Gramatica')}>
-                        <Entypo name='book' size={40} color='#DF6E1A'/>
-                    </TouchableOpacity>
+                <View>
+                    <TouchableOpacity style={styles.btn} activeOpacity={.7} onPress={()=> navigation.navigate('Alfabeto')}>
+                        <View style={styles.btnIcon}>
+                            <Text style={styles.abIcon}>
+                                A-Z
+                            </Text>
+                        </View>
                     <Text style={styles.btnName}>
-                        Gramática
+                        Alfabeto
                     </Text>
+                    </TouchableOpacity>
                 </View>
-                <View style={styles.btn}>
-                    <TouchableOpacity style={styles.btnIcon} onPress={()=> navigation.navigate('Historia')}>
-                        <FontAwesome name='book' size={40} color='#DF6E1A'/>
+                <View>
+                    <TouchableOpacity style={styles.btn} activeOpacity={.7} onPress={()=> abrirLink()}>
+                        <View style={styles.btnIcon}>
+                            <Entypo name='book' size={35} color='#DF6E1A'/>
+                        </View>
+                        <Text style={styles.btnName}>
+                            Gramática <Feather name='external-link' size={15} />
+                        </Text>
                     </TouchableOpacity>
-                    <Text style={styles.btnName}>
-                        História
-                    </Text>
                 </View>
-                <View style={styles.btn}>
-                    <TouchableOpacity style={styles.btnIcon} onPress={()=> navigation.navigate('Quiz')}>
-                        <MaterialIcons name='quiz' size={40} color='#DF6E1A'/>
-                    </TouchableOpacity>
+                <View >
+                    <TouchableOpacity style={styles.btn} activeOpacity={.7} onPress={()=> navigation.navigate('Tradutor')}>
+                        <View style={styles.btnIcon}>
+                            <MaterialCommunityIcons name='translate' size={35} color='#DF6E1A'/>
+                        </View>
                     <Text style={styles.btnName}>
-                        Quiz
+                        Tradutor
                     </Text>
+                    </TouchableOpacity>
+                </View>
+                <View>
+                    <TouchableOpacity style={styles.btn} activeOpacity={.7} onPress={()=> navigation.navigate('Sobre_a_lingua')}>
+                        <View style={styles.btnIcon}>
+                            <FontAwesome name='book' size={35} color='#DF6E1A'/>
+                        </View>
+                        <Text style={styles.btnName}>
+                            Sobre a língua
+                        </Text>
+                    </TouchableOpacity>
                 </View>
             </ScrollView>
     )
@@ -63,28 +89,33 @@ const styles = StyleSheet.create({
         paddingEnd: 10,
         paddingVertical: 20,
         marginBottom: 10,
-        flexDirection: 'row',
-        backgroundColor: '#ffff',
-        width: '100%'
     },
     btn: {
-       justifyContent: 'center',
-       alignItems: 'center',
        marginHorizontal: 10,
+       marginBottom: 20,
+       alignItems: 'center',
+       flexDirection: 'row',
+       backgroundColor: '#eaeaea',
+       padding: 10,
+       borderRadius: 10
     },
     btnIcon: {
-        backgroundColor: '#eaeaea',
-        borderRadius: 87/2,
-        height: 70,
-        width: 70,
+        backgroundColor: '#ffff',
+        borderRadius: 60/2,
+        height: 60,
+        width: 60,
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 5
+        marginBottom: 5,
+        marginRight: 20
     },
     btnName: {
         fontSize: 18,
         fontWeight: 'bold',
     },
-    
-
+    abIcon: {
+        fontSize: 25,
+        fontWeight: 'bold',
+        color: '#DF6E1A'
+    }
 })

@@ -4,29 +4,26 @@ import {
     StyleSheet,
     StatusBar,
     TouchableOpacity,
-    ScrollView
+    ScrollView,
+    SafeAreaView
 } from 'react-native';
-
-import {NavigationContainer, useNavigation} from '@react-navigation/native'
 import {
     Entypo
 } from '@expo/vector-icons'
 import Links from '../../Components/Links';
 
-
-
 export default function Home(){
-    const navigation = useNavigation()
     return(
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <Links />
-        </View>
+        </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        alignItems: 'center',
+        flex: 1,
+        justifyContent: 'flex-end'
     },
 
 })

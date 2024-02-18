@@ -3,14 +3,15 @@ import {
     Text,
     StyleSheet,
     StatusBar,
-    TouchableOpacity
+    TouchableOpacity,
+    SafeAreaView
 } from 'react-native';
 import Logo from '../../Components/AppLogo/index';
 import {FontAwesome, MaterialIcons} from '@expo/vector-icons'
 
 export default function Contactar(){
     return(
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <View style={styles.logo}>
                 <Logo sizeIcon={30} sizeText={30} color='#FF6B35'/>
             </View>
@@ -33,7 +34,7 @@ export default function Contactar(){
                     </Text>
                 </TouchableOpacity>
             </View>
-        </View>
+        </SafeAreaView>
     )
 }
 
