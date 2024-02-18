@@ -45,10 +45,6 @@ export default function Adm(){
         .then((response)=>response.json())
         .then((json)=>{setResponse( json.msg ? json.msg: '' ); setAutenticado(json.auth); setAdmNome(json.nome)})
         .catch((error)=>alert('error'))
-        .finally(()=>{
-            setEmail('')
-            setSenha('')
-        })
     }
 
     const responseMsg = (res)=>{

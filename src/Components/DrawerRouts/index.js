@@ -122,9 +122,6 @@ export default function DrawerRouter(){
                 component={Contactar}
                 options={
                     {
-                        headerStyle:{
-                            backgroundColor: '#000'
-                        },
                         headerTitle: '',
                         drawerIcon: ({focused, size, color})=>(
                             <FontAwesome 

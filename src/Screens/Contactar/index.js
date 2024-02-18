@@ -21,13 +21,13 @@ export default function Contactar(){
             </View>
             <View style={styles.contacts}>
                 <TouchableOpacity style={styles.contact} activeOpacity={1}>
-                    <MaterialIcons name='attach-email' color='#eaeaea' size={20}/>
+                    <MaterialIcons name='attach-email' color='#000' size={20}/>
                     <Text style={styles.contactText}>
                         belchiorsapalo@gmail.com
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.contact} activeOpacity={1}>
-                    <MaterialIcons name='phone' color='#eaeaea' size={20}/>
+                    <MaterialIcons name='phone' color='#000' size={20}/>
                     <Text style={styles.contactText}>
                         +244 921082076
                     </Text>
@@ -41,7 +41,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: '#000',
         paddingVertical: 50
     },
     copy: {
@@ -49,7 +48,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     copyText: {
-        color: '#eaeaea',
+        color: '#000',
         margin: 10,
         fontWeight: '100'
     },
