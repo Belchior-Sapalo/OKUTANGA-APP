@@ -5,7 +5,8 @@ import {
     StatusBar,
     SafeAreaView,
     Linking,
-    TouchableOpacity
+    TouchableOpacity,
+    ScrollView
 } from 'react-native';
 
 import {Feather} from '@expo/vector-icons'
@@ -16,6 +17,7 @@ export default function SobreLingua(){
     }
     return(
         <SafeAreaView style={styles.container}>
+            <ScrollView style={styles.content} showsHorizontalScrollIndicator={false}>
             <View style={styles.sec}>
                 <Text style={styles.title}>
                     Língua umbundo
@@ -51,6 +53,7 @@ export default function SobreLingua(){
                     </Text>
                 </TouchableOpacity>
             </View>
+            </ScrollView>
         </SafeAreaView>
     )
 }
@@ -58,7 +61,9 @@ export default function SobreLingua(){
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20
+        paddingHorizontal: 20
+    },
+    content:{
     },
     sec: {
 
