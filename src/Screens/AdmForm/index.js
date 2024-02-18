@@ -117,6 +117,7 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingTop: 20,
         alignItems: 'center',
+        backgroundColor: '#ffff'
     },
     admIconContainer: {
         padding: 10,

@@ -3,7 +3,8 @@ import {
     FontAwesome,
     MaterialCommunityIcons,
     AntDesign,
-    MaterialIcons
+    MaterialIcons,
+    FontAwesome5
 } from '@expo/vector-icons'
 import {
     View,
@@ -14,13 +15,15 @@ import {
     StatusBar
 } from 'react-native'
 import {useNavigation} from '@react-navigation/native'
-import Home from '../../Screens/Home';
+import Dicionario from '../../Screens/Dicionario';
 import Pesquisa from '../../Screens/Pesquisa';
 import Configuracoes from '../../Screens/Configuracoes';
 import Tradutor from '../../Screens/Tradutor';
 import AppLogo from '../AppLogo';
 import Contactar from '../../Screens/Contactar';
 import Adm from '../../Screens/AdmForm';
+import Home from '../../Screens/Home';
+import StackRouter from '../StackRouts';
 
 const MenuToggler = ()=>{
     const navigation = useNavigation();
@@ -51,7 +54,7 @@ export default function DrawerRouter(){
             initialRouteName='Home'
             screenOptions={{
                 headerStyle: {
-                    backgroundColor: '#EDF0EF',
+                    backgroundColor: '#FFFF',
                 },
                 headerTitleStyle: {
                     fontSize: 20
@@ -71,13 +74,27 @@ export default function DrawerRouter(){
                 drawerActiveTintColor: '#DF6E1A'
             }}
         >
-            <Drawer.Screen name='Home'component={Home}
+            <Drawer.Screen name='Home'component={StackRouter}
                 options={
                     {
                         headerTitle: '',
                         drawerIcon: ({focused, color})=>(
                             <FontAwesome 
                                 name='home'
+                                color={focused ? '#DF6E1A': color}
+                                size={25}
+                            />
+                        )
+                    }
+                }
+            />
+            <Drawer.Screen name='Dicionario'component={Dicionario}
+                options={
+                    {
+                        headerTitle: '',
+                        drawerIcon: ({focused, color})=>(
+                            <FontAwesome5 
+                                name='book-reader'
                                 color={focused ? '#DF6E1A': color}
                                 size={25}
                             />
