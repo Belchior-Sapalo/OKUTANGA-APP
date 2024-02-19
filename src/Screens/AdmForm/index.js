@@ -24,9 +24,6 @@ export default function Adm(){
     useFocusEffect(
         useCallback(()=>{
            setChave(prevChave=> prevChave + 1)
-           setEmail('')
-           setSenha('')
-           setResponse(null)
         }, [])
     )
 
@@ -63,7 +60,7 @@ export default function Adm(){
     }
 
     return(
-        <SafeAreaView style={styles.admInputContainer}>
+        <SafeAreaView style={styles.admInputContainer} key={chave}>
             <View style={styles.response}>
                 {
                     response ? (

@@ -16,7 +16,6 @@ import {
 } from 'react-native'
 import {useNavigation} from '@react-navigation/native'
 import Configuracoes from '../../Screens/Configuracoes';
-import Tradutor from '../../Screens/Tradutor';
 import AppLogo from '../AppLogo';
 import Contactar from '../../Screens/Contactar';
 import Adm from '../../Screens/AdmForm';
