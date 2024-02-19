@@ -7,10 +7,28 @@ import {
     TouchableOpacity,
     Switch
 } from 'react-native';
+import {useState} from 'react'
 import {MaterialCommunityIcons, MaterialIcons} from '@expo/vector-icons'
 import {secondary_color, detalhes, primary_color} from '../../Components/Cores'
 
 export default function Configuracoes(){
+    const [lightTheme, setLightTheme] = useState(true);
+    const [darkTheme, setDarkTheme] = useState(false);
+    const toggleSwitchDark = () => {
+        setDarkTheme(previousState => !previousState);
+        setLightTheme(false);
+        alert('Modo escuro activado')
+    };
+    const toggleSwitchLight = () => {
+        setLightTheme(previousState => !previousState);
+        setDarkTheme(false);
+        alert('Modo claro activado')
+    };
+
+    if(!darkTheme && !lightTheme){
+        setLightTheme(true)
+    }
+    
     return(
         <SafeAreaView style={styles.container}>
             <View style={styles.configGroup}>
@@ -18,7 +36,7 @@ export default function Configuracoes(){
                     Tema
                 </Text>
                 <View style={styles.configOptionsContainer}>
-                    <TouchableOpacity style={styles.configOption} activeOpacity={1}>
+                    {/* <View style={styles.configOption} activeOpacity={1}>
                         <View style={styles.configOptionInfo}>
                             <MaterialCommunityIcons name='theme-light-dark' size={30}/>
 
@@ -27,11 +45,29 @@ export default function Configuracoes(){
                             </Text>
                         </View>
 
-                        <View style={styles.configSelect}>
+                        <Switch 
+                            trackColor={{ false: "#767577", true: "#81b0ff" }}
+                            onValueChange={toggleSwitch}
+                            value={activo}
+                        />
+                    </View> */}
+                    <View style={styles.configOption} activeOpacity={1}>
+                        <View style={styles.configOptionInfo}>
+                            <MaterialIcons name='light-mode' size={30}/>
 
+                            <Text style={styles.configOptionText}>
+                                Claro
+                            </Text>
                         </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.configOption} activeOpacity={1}>
+                        <Switch 
+                            trackColor={{ false: "#767577", true: "#027333" }}
+                            thumbColor={lightTheme ? detalhes : "#FFFF"}
+                            onValueChange={toggleSwitchLight}
+                            value={lightTheme}
+                            style={{ transform: [{ scaleX: 1.5 }, { scaleY: 1.5 }] }} 
+                        />
+                    </View>
+                    <View style={[styles.configOption, {borderBottomWidth: 0}]} activeOpacity={1}>
                         <View style={styles.configOptionInfo}>
                             <MaterialIcons name='dark-mode' size={30}/>
 
@@ -40,22 +76,14 @@ export default function Configuracoes(){
                             </Text>
                         </View>
 
-                        <View style={styles.configSelect}>
-
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={[styles.configOption, {borderBottomWidth: 0}]} activeOpacity={1}>
-                        <View style={styles.configOptionInfo}>
-                            <MaterialIcons name='light-mode' size={30}/>
-
-                            <Text style={styles.configOptionText}>
-                                Claro
-                            </Text>
-                        </View>
-                        <View style={styles.configSelect}>
-
-                        </View>
-                    </TouchableOpacity>
+                        <Switch 
+                            trackColor={{ false: "#767577", true: "#027333" }} 
+                            thumbColor={darkTheme ? detalhes : "#FFFF"}
+                            onValueChange={toggleSwitchDark}
+                            value={darkTheme}
+                            style={{ transform: [{ scaleX: 1.5 }, { scaleY: 1.5 }] }} 
+                        />
+                    </View>
                 </View>
             </View>
         </SafeAreaView>
