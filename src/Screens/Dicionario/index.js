@@ -23,11 +23,15 @@ export default function Dicionario(){
     const [into, setInto] = useState('')
     const [modalVisible, setModalVisible] = useState(false)
     const [carregando, setCarregando] = useState(true)
+    const [responseMsg, setResponseMsg] = useState('')
+    const [internetError, setInternetError] = useState(true)
     const [chave, setChave] = useState(0)
 
+
+    
     useFocusEffect(
         useCallback(()=>{
-           setChave(prevChave=> prevChave + 1)
+           setChave(prevState => prevState + 1)
         }, [])
     )
 
@@ -38,10 +42,10 @@ export default function Dicionario(){
             fetch(url)
             .then((response)=>response.json())
             .then((json)=> json.sort((a, b)=> a.palavraPortugues.localeCompare(b.palavraPortugues)))
-            .then((res)=>setDados(res))
+            .then((res)=>{setDados(res); setResponseMsg(res.msg)})
             .catch((error)=>alert(`Falha: ${error}`))
-            .finally(()=>setCarregando(false))
-        },[]
+            .finally(()=>setInternetError(false))
+        },[chave]
     )
 
     let resultados
@@ -56,7 +60,7 @@ export default function Dicionario(){
         })
 
         if(resultados.length == 0){
-            resultados[0] = 'sem resultados...'
+            resultados[0] = 'Sem resultados...'
         }
     }
     
@@ -82,11 +86,6 @@ export default function Dicionario(){
     }
 
     function verificarErro(){
-        if(dados.length == 0){
-            return (
-                <Error route='Pesquisa'/>
-            )
-        }else{
             return (
                 <View style={styles.dadosContainer}>
                     <FlatList
@@ -102,7 +101,12 @@ export default function Dicionario(){
                             >
                                     <Text style={styles.resultText}>
                                         {
-                                            item
+                                            item? (
+                                                item
+                                            ): (
+                                                responseMsg
+                                            )
+                                            
                                         }
                                     </Text>
                             </TouchableOpacity>
@@ -138,7 +142,6 @@ export default function Dicionario(){
                     </Modal>
                 </View>
                 )
-        }
     }
 
     return(
@@ -158,7 +161,12 @@ export default function Dicionario(){
              </View>
  
              {
-                 verificarErro()
+                 internetError? (
+                    <Error />
+                 ): (
+                    verificarErro()
+                 )
+                 
              }
         </SafeAreaView>
     )
