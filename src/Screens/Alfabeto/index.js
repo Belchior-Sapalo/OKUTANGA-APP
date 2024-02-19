@@ -6,6 +6,7 @@ import {
     ScrollView,
     SafeAreaView
 } from 'react-native';
+import {primary_color, dark_color} from '../../Components/Cores/index'
 
 export default function Alfabeto(){
     return(
@@ -242,7 +243,7 @@ const styles = StyleSheet.create({
         width: 80,
         height: 80,
         borderRadius: 80/2,
-        backgroundColor: '#ffff',
+        backgroundColor: primary_color,
         padding: 10,
         marginHorizontal: 5,
         marginVertical: 10,

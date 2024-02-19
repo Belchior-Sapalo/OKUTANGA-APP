@@ -13,11 +13,3 @@ export default function App() {
 }
 
 
-
-/**
- *#EDF0EF
- #DF6E1A
- #2B7595
- #FFFFFF
- #000000
- */

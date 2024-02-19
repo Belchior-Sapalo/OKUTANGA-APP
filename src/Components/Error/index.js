@@ -10,6 +10,7 @@ import {
     MaterialIcons
 } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
+import {detalhes, error_color} from '../../Components/Cores/index'
 
 export default function Error( {route} ){
     const navigation = useNavigation()
@@ -19,7 +20,7 @@ export default function Error( {route} ){
     return(
         <View style={styles.container}>
             <View style={styles.errorIcon}>
-                <MaterialIcons name='sms-failed' size={60} color='#FF6B35'/>
+                <MaterialIcons name='sms-failed' size={60} color={error_color}/>
             </View>
             <View style={styles.erroInfoContainer}>
                 <Text style={styles.errorMsg}>
@@ -29,16 +30,6 @@ export default function Error( {route} ){
                     Verifique sua conexão a internet ou reinicie o aplicativo
                 </Text>
             </View>
-            {/* <TouchableOpacity 
-                style={styles.reloadBtnContainer} 
-                activeOpacity={0.8} 
-                onPress={()=>reload()}
-            >
-                <Ionicons name='reload-circle' size={50} color='#FF6B35'/>
-                <Text>
-                    Recarregar
-                </Text>
-            </TouchableOpacity> */}
         </View>
     )
 }

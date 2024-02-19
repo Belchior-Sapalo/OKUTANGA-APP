@@ -17,7 +17,7 @@ import {
     FontAwesome5,
     Feather
 } from '@expo/vector-icons'
-
+import {detalhes, primary_color, secondary_color} from '../Cores/index'
 
 
 export default function Links(){
@@ -30,7 +30,7 @@ export default function Links(){
                 <View>
                     <TouchableOpacity style={styles.btn} activeOpacity={.7} onPress={()=> navigation.navigate('Dicionario')}>
                         <View style={styles.btnIcon}>
-                            <FontAwesome5 name='book-reader' size={35} color='#DF6E1A'/>
+                            <FontAwesome5 name='book-reader' size={35} color={detalhes}/>
                         </View>
                     <Text style={styles.btnName}>
                         Dicionário
@@ -52,7 +52,7 @@ export default function Links(){
                 <View>
                     <TouchableOpacity style={styles.btn} activeOpacity={.7} onPress={()=> abrirLink()}>
                         <View style={styles.btnIcon}>
-                            <Entypo name='book' size={35} color='#DF6E1A'/>
+                            <Entypo name='book' size={35} color={detalhes}/>
                         </View>
                         <Text style={styles.btnName}>
                             Gramática <Feather name='external-link' size={15} />
@@ -62,7 +62,7 @@ export default function Links(){
                 <View >
                     <TouchableOpacity style={styles.btn} activeOpacity={.7} onPress={()=> navigation.navigate('Tradutor')}>
                         <View style={styles.btnIcon}>
-                            <MaterialCommunityIcons name='translate' size={35} color='#DF6E1A'/>
+                            <MaterialCommunityIcons name='translate' size={35} color={detalhes}/>
                         </View>
                     <Text style={styles.btnName}>
                         Tradutor
@@ -72,7 +72,7 @@ export default function Links(){
                 <View>
                     <TouchableOpacity style={styles.btn} activeOpacity={.7} onPress={()=> navigation.navigate('Sobre_a_lingua')}>
                         <View style={styles.btnIcon}>
-                            <FontAwesome name='book' size={35} color='#DF6E1A'/>
+                            <FontAwesome name='book' size={35} color={detalhes}/>
                         </View>
                         <Text style={styles.btnName}>
                             Sobre a língua
@@ -82,7 +82,6 @@ export default function Links(){
             </ScrollView>
     )
 }
-
 const styles = StyleSheet.create({
     btnContainer: {
         paddingStart: 10,
@@ -95,19 +94,21 @@ const styles = StyleSheet.create({
        marginBottom: 20,
        alignItems: 'center',
        flexDirection: 'row',
-       backgroundColor: '#eaeaea',
+       backgroundColor: secondary_color,
        padding: 10,
-       borderRadius: 10
+       borderRadius: 10,
     },
     btnIcon: {
-        backgroundColor: '#ffff',
+        backgroundColor: primary_color,
         borderRadius: 60/2,
         height: 60,
         width: 60,
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: 5,
-        marginRight: 20
+        marginRight: 20,
+        borderWidth: 2,
+        borderColor: detalhes
     },
     btnName: {
         fontSize: 18,
@@ -116,6 +117,6 @@ const styles = StyleSheet.create({
     abIcon: {
         fontSize: 25,
         fontWeight: 'bold',
-        color: '#DF6E1A'
+        color: detalhes
     }
 })

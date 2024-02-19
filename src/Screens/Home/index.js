@@ -14,16 +14,8 @@ import Links from '../../Components/Links';
 
 export default function Home(){
     return(
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView>
             <Links />
         </SafeAreaView>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'flex-end'
-    },
-
-})

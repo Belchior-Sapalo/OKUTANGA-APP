@@ -11,6 +11,7 @@ import {
 import {FontAwesome, MaterialIcons} from '@expo/vector-icons'
 import React, {useState, useCallback} from 'react'
 import {useFocusEffect} from '@react-navigation/native'
+import {detalhes, primary_color, secondary_color, dark_color, error_color} from '../../Components/Cores/index'
 
 export default function Adm(){
     const [email, setEmail] = useState('')
@@ -73,7 +74,7 @@ export default function Adm(){
                 }
             </View>
             <View style={styles.admIconContainer}>
-                <MaterialIcons name='admin-panel-settings' size={50} color='#DF6E1A'/>
+                <MaterialIcons name='admin-panel-settings' size={50} color={detalhes}/>
             </View>
             <Text style={styles.text}>
                 Bem vindo
@@ -118,7 +119,7 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingTop: 20,
         alignItems: 'center',
-        backgroundColor: '#ffff'
+        backgroundColor: primary_color
     },
     admIconContainer: {
         padding: 10,
@@ -143,7 +144,7 @@ const styles = StyleSheet.create({
         fontSize: 18
     },
     submitBtn: {
-        backgroundColor: '#DF6E1A',
+        backgroundColor: detalhes,
         paddingHorizontal: 50,
         paddingVertical: 10,
         borderRadius: 5,
@@ -152,13 +153,13 @@ const styles = StyleSheet.create({
     submitText: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#ffff'
+        color: primary_color
     },
     response: {
         width: '100%'
     },
     responseMsgContainer: {
-        backgroundColor: '#FFCCCC',
+        backgroundColor: error_color,
         borderRadius: 8,
         padding: 10,
         width: '100%',
@@ -170,6 +171,6 @@ const styles = StyleSheet.create({
     responseMsgText: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#ffff'
+        color: primary_color
     }
 })

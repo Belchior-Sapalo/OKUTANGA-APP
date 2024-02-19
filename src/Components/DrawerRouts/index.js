@@ -21,6 +21,7 @@ import AppLogo from '../AppLogo';
 import Contactar from '../../Screens/Contactar';
 import Adm from '../../Screens/AdmForm';
 import StackRouter from '../StackRouts';
+import {detalhes} from '../Cores/index'
 
 const MenuToggler = ()=>{
     const navigation = useNavigation();
@@ -31,7 +32,7 @@ const MenuToggler = ()=>{
                 onPress={()=> navigation.toggleDrawer()}
                 activeOpacity={1}
             >
-                <FontAwesome name='bars' size={30} color='#DF6E1A'/>
+                <FontAwesome name='bars' size={30} color={detalhes}/>
             </TouchableOpacity>
         </View>
     )
@@ -39,7 +40,7 @@ const MenuToggler = ()=>{
 
 const Logo = ()=>{
     return(
-        <AppLogo sizeText={20}/>
+        <AppLogo sizeText={20} color={detalhes}/>
     )
 }
 
@@ -68,7 +69,7 @@ export default function DrawerRouter(){
                     borderBottomWidth: 1,
                 },
                 drawerActiveBackgroundColor: '#eaeaea',
-                drawerActiveTintColor: '#DF6E1A'
+                drawerActiveTintColor: detalhes
             }}
         >
             <Drawer.Screen name='Home'component={StackRouter}
@@ -78,7 +79,7 @@ export default function DrawerRouter(){
                         drawerIcon: ({focused, color})=>(
                             <FontAwesome 
                                 name='home'
-                                color={focused ? '#DF6E1A': color}
+                                color={focused ? detalhes: color}
                                 size={25}
                             />
                         )
@@ -94,7 +95,7 @@ export default function DrawerRouter(){
                         drawerIcon: ({focused, size, color})=>(
                             <FontAwesome 
                                 name='phone'
-                                color={focused ? '#DF6E1A': color}  
+                                color={focused ? detalhes: color}  
                                 size={25}
                             />
                         )
@@ -110,7 +111,7 @@ export default function DrawerRouter(){
                         drawerIcon: ({focused, size, color})=>(
                             <FontAwesome 
                                 name='gear'
-                                color={focused ? '#DF6E1A': color}  
+                                color={focused ? detalhes: color}  
                                 size={25}
                             />
                         )
@@ -126,7 +127,7 @@ export default function DrawerRouter(){
                         drawerIcon: ({focused, size, color})=>(
                             <MaterialIcons 
                                 name='admin-panel-settings'
-                                color={focused ? '#DF6E1A': color}  
+                                color={focused ? detalhes: color}  
                                 size={25}
                             />
                         )

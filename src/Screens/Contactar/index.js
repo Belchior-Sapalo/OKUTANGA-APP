@@ -8,12 +8,13 @@ import {
 } from 'react-native';
 import Logo from '../../Components/AppLogo/index';
 import {FontAwesome, MaterialIcons} from '@expo/vector-icons'
+import {detalhes, primary_color, secondary_color, dark_color} from '../../Components/Cores/index'
 
 export default function Contactar(){
     return(
         <SafeAreaView style={styles.container}>
             <View style={styles.logo}>
-                <Logo sizeIcon={30} sizeText={30} color='#FF6B35'/>
+                <Logo sizeIcon={30} sizeText={30} color={detalhes}/>
             </View>
             <View style={styles.copy}>
                 <Text style={styles.copyText}>
@@ -22,13 +23,13 @@ export default function Contactar(){
             </View>
             <View style={styles.contacts}>
                 <TouchableOpacity style={styles.contact} activeOpacity={1}>
-                    <MaterialIcons name='attach-email' color='#000' size={20}/>
+                    <MaterialIcons name='attach-email' color={dark_color} size={20}/>
                     <Text style={styles.contactText}>
                         belchiorsapalo@gmail.com
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.contact} activeOpacity={1}>
-                    <MaterialIcons name='phone' color='#000' size={20}/>
+                    <MaterialIcons name='phone' color={dark_color} size={20}/>
                     <Text style={styles.contactText}>
                         +244 921082076
                     </Text>
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     copyText: {
-        color: '#000',
+        color: dark_color,
         margin: 10,
         fontWeight: '100'
     },
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
         margin: 10
     },
     contactText: {
-        color: '#139FCB',
+        color: detalhes,
         marginLeft: 20,
         textDecorationLine: 'underline'
     }

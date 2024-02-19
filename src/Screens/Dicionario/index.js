@@ -14,6 +14,7 @@ import React, {useState, useEffect, useCallback} from 'react'
 import {FontAwesome} from '@expo/vector-icons'
 import Error from '../../Components/Error';
 import {useFocusEffect} from '@react-navigation/native'
+import {detalhes, primary_color, secondary_color, dark_color} from '../../Components/Cores/index'
 
 export default function Dicionario(){
     const [dados, setDados] = useState([])
@@ -143,12 +144,12 @@ export default function Dicionario(){
     return(
         <SafeAreaView style={styles.container} key={chave}>
              <View style={styles.searchContainer}>
-                    <FontAwesome name='search' color='#DF6E1A' size={25}/>
+                    <FontAwesome name='search' color={detalhes} size={25}/>
                  <TextInput
                      style={styles.input}
                      placeholder='Pesquisar por uma palavra'
                      placeholderTextColor='rgba(0,0,0,.2)'
-                     selectionColor='#DF6E1A'
+                     selectionColor={detalhes}
                      autoFocus={true}
                      onChangeText={setInto}
                      value={into}
@@ -166,7 +167,7 @@ export default function Dicionario(){
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#ffff',
+        backgroundColor: primary_color,
         paddingBottom: 80
     },
     dadosContainer: {
@@ -185,7 +186,7 @@ const styles = StyleSheet.create({
     },
     input: {
         padding: 10,
-        color: '#000',
+        color: dark_color,
         fontSize: 18,
         width: '100%',
         borderLeftWidth: .2,
@@ -193,23 +194,23 @@ const styles = StyleSheet.create({
     },
     result: {
         padding: 15,
-        backgroundColor: '#FFFF',
+        backgroundColor: primary_color,
         borderBottomWidth: 1,
-        borderBottomColor: 'rgb(222, 222, 222)',
+        borderBottomColor: secondary_color,
         paddingStart: 20
     },
     resultText: {
         fontSize: 14,
-        color: '#000',
+        color: dark_color,
         fontWeight: '500'
     },
     modal: {
         flex: 1,
-        backgroundColor: '#eaeaea',
+        backgroundColor: secondary_color,
         padding: 14
     },
     closeModalBtn: {
-        backgroundColor: '#DF6E1A',
+        backgroundColor: detalhes,
         width: 40,
         height: 40,
         alignSelf: 'flex-end',
@@ -222,7 +223,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 14,
         borderBottomWidth: 1,
-        borderBottomColor: 'rgb(222, 222, 222)',
+        borderBottomColor: secondary_color,
         padding: 14
     },
     significado: {
@@ -230,7 +231,6 @@ const styles = StyleSheet.create({
         fontSize: 18
     },
     loadingContainer: {
-        backgroundColor: 'rgba(0, 0, 0, 0.1)',
         padding: 20,
         flex: 1,
         justifyContent: 'center',

@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 
 import {Feather} from '@expo/vector-icons'
+import { detalhes } from '../../Components/Cores';
 
 export default function SobreLingua(){
     function abrirLink(){
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
     },
     linkName: {
         fontSize: 18,
-        color: '#2B7595',
+        color: detalhes,
         marginHorizontal: 10
     }
 

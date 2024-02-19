@@ -5,6 +5,7 @@ import {
 } from 'react-native'
 
 import {FontAwesome5} from '@expo/vector-icons'
+import { detalhes } from '../Cores'
 
 export default function AppLogo( {color, sizeIcon, sizeText} ){
     return(
@@ -14,7 +15,7 @@ export default function AppLogo( {color, sizeIcon, sizeText} ){
             }]}>
                 OKUTANGA
             </Text>
-            <FontAwesome5 name='user-graduate' size={sizeIcon ? sizeIcon: 30} color={color ? color : '#DF6E1A'}/>
+            <FontAwesome5 name='user-graduate' size={sizeIcon ? sizeIcon: 30} color={color}/>
         </View>
     )
 }
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#DF6E1A',
+        color: detalhes,
         marginRight: 10,
     }
 })
