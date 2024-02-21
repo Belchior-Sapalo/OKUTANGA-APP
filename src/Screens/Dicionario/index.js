@@ -10,13 +10,14 @@ import {
     ActivityIndicator,
     SafeAreaView
 } from 'react-native';
-import React, {useState, useEffect, useCallback} from 'react'
+import React, {useState, useEffect, useCallback, useContext} from 'react'
 import {FontAwesome} from '@expo/vector-icons'
 import Error from '../../Components/Error';
 import {useFocusEffect} from '@react-navigation/native'
-import {detalhes, primary_color, secondary_color, dark_color} from '../../Components/Cores/index'
+import ThemeContext from '../../Contexts/ThemeContext'
 
 export default function Dicionario(){
+    const {temaActual } = useContext(ThemeContext)
     const [dados, setDados] = useState([])
     const [palavra, setPalavra] = useState('')
     const [significado, setSignificado] = useState('')
@@ -92,14 +93,14 @@ export default function Dicionario(){
                         data={resultados}
                         renderItem={({item})=>
                             <TouchableOpacity 
-                                style={styles.result}
+                                style={[styles.result, {backgroundColor: temaActual.background_color, borderBottomColor: temaActual.border_color}]}
                                 activeOpacity={0.7}
                                 onPress={()=>{
                                     buscarSignificado(item)
                                     setModalVisible(true)
                                 }}
                             >
-                                    <Text style={styles.resultText}>
+                                    <Text style={[styles.resultText, {color:temaActual.text_color}]}>
                                         {
                                             item? (
                                                 item
@@ -118,21 +119,21 @@ export default function Dicionario(){
                         transparent={true}
                         onRequestClose={() => setModalVisible(false)}
                     >
-                        <View style={styles.modal}>
+                        <View style={[styles.modal, {backgroundColor: temaActual.background_color}]}>
                             <TouchableOpacity 
-                                style={styles.closeModalBtn} 
+                                style={[styles.closeModalBtn, {backgroundColor: temaActual.detalhes_color}]} 
                                 onPress={()=>setModalVisible(false)}
                                 activeOpacity={0.7}
                             >
-                                <FontAwesome name='close' size={20} color='#eaeaea'/>
+                                <FontAwesome name='close' size={20} color='#fff'/>
                             </TouchableOpacity>
                             <View style={styles.modalContent}>
-                                <Text style={styles.palavraPortugues}>
+                                <Text style={[styles.palavraPortugues, {borderBottomColor: temaActual.border_color, color: temaActual.text_color}]}>
                                     {
                                         palavra
                                     }
                                 </Text>
-                                <Text style={styles.significado}>
+                                <Text style={[styles.significado, {color: temaActual.text_color}]}>
                                     {
                                         significado
                                     }
@@ -145,14 +146,14 @@ export default function Dicionario(){
     }
 
     return(
-        <SafeAreaView style={styles.container} key={chave}>
-             <View style={styles.searchContainer}>
-                    <FontAwesome name='search' color={detalhes} size={25}/>
+        <SafeAreaView style={[styles.container, {backgroundColor: temaActual.background_color}]} key={chave}>
+             <View style={[styles.searchContainer, {borderColor: temaActual.border_color}]}>
+                    <FontAwesome name='search' color={temaActual.detalhes_color} size={25}/>
                  <TextInput
-                     style={styles.input}
+                     style={[styles.input, {borderColor: temaActual.border_color, color: temaActual.text_color}]}
                      placeholder='Pesquisar por uma palavra'
-                     placeholderTextColor='rgba(0,0,0,.2)'
-                     selectionColor={detalhes}
+                     placeholderTextColor={temaActual.text_color}
+                     selectionColor={temaActual.detalhes_color}
                      autoFocus={true}
                      onChangeText={setInto}
                      value={into}
@@ -175,7 +176,6 @@ export default function Dicionario(){
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: primary_color,
         paddingBottom: 80
     },
     dadosContainer: {
@@ -194,31 +194,26 @@ const styles = StyleSheet.create({
     },
     input: {
         padding: 10,
-        color: dark_color,
         fontSize: 18,
         width: '100%',
         borderLeftWidth: .2,
-        marginStart: 10
+        marginStart: 10,
+        borderLeftWidth: 1,
     },
     result: {
         padding: 15,
-        backgroundColor: primary_color,
         borderBottomWidth: 1,
-        borderBottomColor: secondary_color,
         paddingStart: 20
     },
     resultText: {
         fontSize: 14,
-        color: dark_color,
         fontWeight: '500'
     },
     modal: {
         flex: 1,
-        backgroundColor: secondary_color,
         padding: 14
     },
     closeModalBtn: {
-        backgroundColor: detalhes,
         width: 40,
         height: 40,
         alignSelf: 'flex-end',
@@ -231,12 +226,11 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 14,
         borderBottomWidth: 1,
-        borderBottomColor: secondary_color,
-        padding: 14
+        padding: 14,
     },
     significado: {
         padding: 14,
-        fontSize: 18
+        fontSize: 18,
     },
     loadingContainer: {
         padding: 20,

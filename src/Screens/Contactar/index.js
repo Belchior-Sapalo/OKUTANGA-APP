@@ -8,29 +8,31 @@ import {
 } from 'react-native';
 import Logo from '../../Components/AppLogo/index';
 import {FontAwesome, MaterialIcons} from '@expo/vector-icons'
-import {detalhes, primary_color, secondary_color, dark_color} from '../../Components/Cores/index'
+import ThemeContext from '../../Contexts/ThemeContext';
+import {useContext} from 'react'
 
 export default function Contactar(){
+    const { temaActual } = useContext(ThemeContext)
     return(
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={[styles.container, {backgroundColor: temaActual.background_color}]}>
             <View style={styles.logo}>
-                <Logo sizeIcon={30} sizeText={30} color={detalhes}/>
+                <Logo sizeIcon={30} sizeText={30} color={temaActual.detalhes_color}/>
             </View>
             <View style={styles.copy}>
-                <Text style={styles.copyText}>
+                <Text style={[styles.copyText, {color:temaActual.text_color}]}>
                     &copy; Belchior Sapalo/Huambo-Angola 2024
                 </Text>
             </View>
             <View style={styles.contacts}>
                 <TouchableOpacity style={styles.contact} activeOpacity={1}>
-                    <MaterialIcons name='attach-email' color={dark_color} size={20}/>
-                    <Text style={styles.contactText}>
+                    <MaterialIcons name='attach-email' color={temaActual.icons_color} size={20}/>
+                    <Text style={[styles.contactText, {color: temaActual.detalhes_color}]}>
                         belchiorsapalo@gmail.com
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.contact} activeOpacity={1}>
-                    <MaterialIcons name='phone' color={dark_color} size={20}/>
-                    <Text style={styles.contactText}>
+                    <MaterialIcons name='phone' color={temaActual.icons_color} size={20}/>
+                    <Text style={[styles.contactText, {color: temaActual.detalhes_color}]}>
                         +244 921082076
                     </Text>
                 </TouchableOpacity>
@@ -43,14 +45,13 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        paddingVertical: 50
+        paddingVertical: 50,
     },
     copy: {
         alignItems: 'center',
         justifyContent: 'center'
     },
     copyText: {
-        color: dark_color,
         margin: 10,
         fontWeight: '100'
     },
@@ -58,10 +59,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        margin: 10
+        margin: 10,
     },
     contactText: {
-        color: detalhes,
         marginLeft: 20,
         textDecorationLine: 'underline'
     }

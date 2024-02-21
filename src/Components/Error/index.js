@@ -10,9 +10,11 @@ import {
     MaterialIcons
 } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
-import {detalhes, error_color} from '../../Components/Cores/index'
+import ThemeContext from '../../Contexts/ThemeContext';
+import { useContext } from 'react';
 
 export default function Error( {route} ){
+    const {temaActual } = useContext(ThemeContext)
     const navigation = useNavigation()
     function reload(){
         navigation.navigate(route)
@@ -20,7 +22,7 @@ export default function Error( {route} ){
     return(
         <View style={styles.container}>
             <View style={styles.errorIcon}>
-                <MaterialIcons name='sms-failed' size={60} color={error_color}/>
+                <MaterialIcons name='sms-failed' size={60} color={temaActual.error_color}/>
             </View>
             <View style={styles.erroInfoContainer}>
                 <Text style={styles.errorMsg}>

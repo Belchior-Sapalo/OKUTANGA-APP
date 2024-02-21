@@ -9,11 +9,12 @@ import {
 } from 'react-native';
 
 import {FontAwesome, MaterialIcons} from '@expo/vector-icons'
-import React, {useState, useCallback} from 'react'
+import React, {useState, useCallback, useContext} from 'react'
 import {useFocusEffect} from '@react-navigation/native'
-import {detalhes, primary_color, secondary_color, dark_color, error_color} from '../../Components/Cores/index'
+import ThemeContext from '../../Contexts/ThemeContext'
 
 export default function Adm(){
+    const {temaActual } = useContext(ThemeContext)
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
     const [response, setResponse] = useState(null)
@@ -50,7 +51,7 @@ export default function Adm(){
         return(
             <View style={styles.responseMsgContainer}>
                 <MaterialIcons name='error' size={40} color='#DF6E1A'/>
-                <Text style={styles.responseMsgText}>
+                <Text style={[styles.responseMsgText, {backgroundColor:temaActual.error_color}]}>
                     {
                         res
                     }
@@ -60,27 +61,32 @@ export default function Adm(){
     }
 
     return(
-        <SafeAreaView style={styles.admInputContainer} key={chave}>
+        <SafeAreaView style={[styles.admInputContainer, {backgroundColor: temaActual.background_color}]} key={chave}>
+             <StatusBar 
+                barStyle={temaActual.statusBar_content_color}
+                backgroundColor={temaActual.header_color}
+            />
             <View style={styles.response}>
                 {
                     response ? (
                         responseMsg(response)
                     ): (
-                        <Text></Text>
+                        <Text>
+                        </Text>
                     )
                 }
             </View>
-            <View style={styles.admIconContainer}>
-                <MaterialIcons name='admin-panel-settings' size={50} color={detalhes}/>
+            <View style={[styles.admIconContainer, {borderColor: temaActual.border_color}]}>
+                <MaterialIcons name='admin-panel-settings' size={50} color={temaActual.detalhes_color}/>
             </View>
-            <Text style={styles.text}>
+            <Text style={[styles.text, {color: temaActual.text_color}]}>
                 Bem vindo
             </Text>
            <TextInput
                 placeholder='Email' 
-                placeholderTextColor='rgba(0,0,0,.2)'
+                placeholderTextColor={temaActual.text_color}
                 selectionColor='rgba(0,0,0,.2)'
-                style={styles.input}
+                style={[styles.input, {borderColor: temaActual.border_color}]}
                 autoFocus={true}
                 value={email}
                 onChangeText={setEmail}
@@ -89,15 +95,15 @@ export default function Adm(){
            />
            <TextInput
                 placeholder='Senha'
-                placeholderTextColor='rgba(0,0,0,.2)'
+                placeholderTextColor={temaActual.text_color}
                 selectionColor='rgba(0,0,0,.2)' 
-                style={styles.input}
+                style={[styles.input, {borderColor: temaActual.border_color}]}
                 value={senha}
                 onChangeText={setSenha}
                 secureTextEntry
            />
            <TouchableOpacity 
-                style={styles.submitBtn}
+                style={[styles.submitBtn, {backgroundColor: temaActual.detalhes_color, borderColor: temaActual.border_color}]}
                 activeOpacity={0.8}
                 onPress={()=>login()}
             >
@@ -116,47 +122,43 @@ const styles = StyleSheet.create({
         flex: 1,
         paddingTop: 20,
         alignItems: 'center',
-        backgroundColor: primary_color
     },
     admIconContainer: {
         padding: 10,
         borderRadius: 100,
         borderWidth: 1,
-        borderColor: 'rgba(0,0,0,.2)',
         justifyContent: 'center',
         alignItems: 'center',
     },
     text: {
         fontSize: 20,
         fontWeight: 'bold',
-        margin: 5
+        margin: 5,
     },
     input: {
         borderWidth: 1,
         margin: 15,
         width: '80%',
         padding: 15,
-        borderColor: 'rgba(0,0,0,0.2)',
         borderRadius: 5,
-        fontSize: 18
+        fontSize: 18,
     },
     submitBtn: {
-        backgroundColor: detalhes,
         paddingHorizontal: 50,
         paddingVertical: 10,
         borderRadius: 5,
-        marginTop: 10
+        marginTop: 10,
+        borderWidth: 1
     },
     submitText: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: primary_color
+        color: '#FFFF'
     },
     response: {
         width: '100%'
     },
     responseMsgContainer: {
-        backgroundColor: error_color,
         borderRadius: 8,
         padding: 10,
         width: '100%',
@@ -168,6 +170,5 @@ const styles = StyleSheet.create({
     responseMsgText: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: primary_color
     }
 })

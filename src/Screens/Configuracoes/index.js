@@ -7,80 +7,35 @@ import {
     TouchableOpacity,
     Switch
 } from 'react-native';
-import {useState} from 'react'
+import react,{useState, useContext} from 'react'
 import {MaterialCommunityIcons, MaterialIcons} from '@expo/vector-icons'
-import {secondary_color, detalhes, primary_color} from '../../Components/Cores'
+import ThemeContext from '../../Contexts/ThemeContext';
+
 
 export default function Configuracoes(){
-    const [lightTheme, setLightTheme] = useState(true);
-    const [darkTheme, setDarkTheme] = useState(false);
-    const toggleSwitchDark = () => {
-        setDarkTheme(previousState => !previousState);
-        setLightTheme(false);
-        alert('Modo escuro activado')
-    };
-    const toggleSwitchLight = () => {
-        setLightTheme(previousState => !previousState);
-        setDarkTheme(false);
-        alert('Modo claro activado')
-    };
-
-    if(!darkTheme && !lightTheme){
-        setLightTheme(true)
-    }
+    
+    const { tema, mudarTema, temaActual } = useContext(ThemeContext)
     
     return(
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={[styles.container, {backgroundColor:temaActual.background_color}]}>
             <View style={styles.configGroup}>
-                <Text style={styles.configTema}>
+                <Text style={[styles.configTema, {color:temaActual.text_color}]}>
                     Tema
                 </Text>
-                <View style={styles.configOptionsContainer}>
-                    {/* <View style={styles.configOption} activeOpacity={1}>
-                        <View style={styles.configOptionInfo}>
-                            <MaterialCommunityIcons name='theme-light-dark' size={30}/>
-
-                            <Text style={styles.configOptionText}>
-                                Automático
-                            </Text>
-                        </View>
-
-                        <Switch 
-                            trackColor={{ false: "#767577", true: "#81b0ff" }}
-                            onValueChange={toggleSwitch}
-                            value={activo}
-                        />
-                    </View> */}
-                    <View style={styles.configOption} activeOpacity={1}>
-                        <View style={styles.configOptionInfo}>
-                            <MaterialIcons name='light-mode' size={30}/>
-
-                            <Text style={styles.configOptionText}>
-                                Claro
-                            </Text>
-                        </View>
-                        <Switch 
-                            trackColor={{ false: "#767577", true: "#027333" }}
-                            thumbColor={lightTheme ? detalhes : "#FFFF"}
-                            onValueChange={toggleSwitchLight}
-                            value={lightTheme}
-                            style={{ transform: [{ scaleX: 1.5 }, { scaleY: 1.5 }] }} 
-                        />
-                    </View>
+                <View style={[styles.configOptionsContainer, {backgroundColor: temaActual.configs_links_color}]}>
                     <View style={[styles.configOption, {borderBottomWidth: 0}]} activeOpacity={1}>
                         <View style={styles.configOptionInfo}>
-                            <MaterialIcons name='dark-mode' size={30}/>
+                            <MaterialIcons name='dark-mode' size={30} color={temaActual.icons_color}/>
 
-                            <Text style={styles.configOptionText}>
-                                Escuro
+                            <Text style={[styles.configOptionText, {color:temaActual.text_color}]}>
+                                Modo escuro
                             </Text>
                         </View>
 
                         <Switch 
-                            trackColor={{ false: "#767577", true: "#027333" }} 
-                            thumbColor={darkTheme ? detalhes : "#FFFF"}
-                            onValueChange={toggleSwitchDark}
-                            value={darkTheme}
+                            thumbColor='#ffff'
+                            value={tema === 'claro'}
+                            onValueChange={mudarTema}
                             style={{ transform: [{ scaleX: 1.5 }, { scaleY: 1.5 }] }} 
                         />
                     </View>
@@ -88,12 +43,13 @@ export default function Configuracoes(){
             </View>
         </SafeAreaView>
     )
+    
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({ 
     container: {
         flex: 1,
-        padding: 20
+        padding: 20,
     },
     configGroup: {
         
@@ -103,16 +59,15 @@ const styles = StyleSheet.create({
     },
     configOptionsContainer: {
         borderRadius: 20,
-        backgroundColor: secondary_color,
         marginVertical: 10
     },
     configOption: {
-        padding: 30,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
         borderBottomWidth: 1,
-        borderBlockColor: primary_color
         
     },
     configOptionInfo: {
@@ -120,12 +75,11 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     configOptionText: {
-        marginHorizontal: 20
+        marginHorizontal: 20,
     },
     configSelect: {
         width: 20,
         height: 20,
-        backgroundColor: primary_color,
         borderRadius: 20/2
     }
 })

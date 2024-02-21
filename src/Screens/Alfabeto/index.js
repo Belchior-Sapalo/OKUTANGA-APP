@@ -6,14 +6,18 @@ import {
     ScrollView,
     SafeAreaView
 } from 'react-native';
-import {primary_color, dark_color} from '../../Components/Cores/index'
+import { useContext } from 'react';
+import ThemeContext from '../../Contexts/ThemeContext'
 
 export default function Alfabeto(){
+    const {temaActual } = useContext(ThemeContext)
     return(
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={[styles.container, {backgroundColor: temaActual.background_color}]}>
             <ScrollView>
                 <SafeAreaView style={styles.letras}>
-                    <View style={styles.letra}>
+                    <View 
+                        style={[styles.letra, {borderColor: temaActual.border_color, backgroundColor: temaActual.btn_icon_color}]}
+                    >
                         <Text style={styles.port}>
                             A-a
                         </Text>
@@ -21,7 +25,7 @@ export default function Alfabeto(){
                             Umb
                         </Text>
                     </View>
-                    <View style={styles.letra}>
+                    <View style={[styles.letra, {borderColor: temaActual.border_color, backgroundColor: temaActual.btn_icon_color}]}>
                         <Text style={styles.port}>
                             B-b
                         </Text>
@@ -29,7 +33,7 @@ export default function Alfabeto(){
                             Umb
                         </Text>
                     </View>
-                    <View style={styles.letra}>
+                    <View style={[styles.letra, {borderColor: temaActual.border_color, backgroundColor: temaActual.btn_icon_color}]}>
                         <Text style={styles.port}>
                             C-c
                         </Text>
@@ -37,7 +41,7 @@ export default function Alfabeto(){
                             Umb
                         </Text>
                     </View>
-                    <View style={styles.letra}>
+                    <View style={[styles.letra, {borderColor: temaActual.border_color, backgroundColor: temaActual.btn_icon_color}]}>
                         <Text style={styles.port}>
                             D-d
                         </Text>
@@ -45,7 +49,7 @@ export default function Alfabeto(){
                             Umb
                         </Text>
                     </View>
-                    <View style={styles.letra}>
+                    <View style={[styles.letra, {borderColor: temaActual.border_color, backgroundColor: temaActual.btn_icon_color}]}>
                         <Text style={styles.port}>
                             E-e
                         </Text>
@@ -53,7 +57,7 @@ export default function Alfabeto(){
                             Umb
                         </Text>
                     </View>
-                    <View style={styles.letra}>
+                    <View style={[styles.letra, {borderColor: temaActual.border_color, backgroundColor: temaActual.btn_icon_color}]}>
                         <Text style={styles.port}>
                             F-f
                         </Text>
@@ -61,7 +65,7 @@ export default function Alfabeto(){
                             Umb
                         </Text>
                     </View>
-                    <View style={styles.letra}>
+                    <View style={[styles.letra, {borderColor: temaActual.border_color, backgroundColor: temaActual.btn_icon_color}]}>
                         <Text style={styles.port}>
                             G-g
                         </Text>
@@ -69,7 +73,7 @@ export default function Alfabeto(){
                             Umb
                         </Text>
                     </View>
-                    <View style={styles.letra}>
+                    <View style={[styles.letra, {borderColor: temaActual.border_color, backgroundColor: temaActual.btn_icon_color}]}>
                         <Text style={styles.port}>
                             H-h
                         </Text>
@@ -77,7 +81,7 @@ export default function Alfabeto(){
                             Umb
                         </Text>
                     </View>
-                    <View style={styles.letra}>
+                    <View style={[styles.letra, {borderColor: temaActual.border_color, backgroundColor: temaActual.btn_icon_color}]}>
                         <Text style={styles.port}>
                             I-i
                         </Text>
@@ -85,7 +89,7 @@ export default function Alfabeto(){
                             Umb
                         </Text>
                     </View>
-                    <View style={styles.letra}>
+                    <View style={[styles.letra, {borderColor: temaActual.border_color, backgroundColor: temaActual.btn_icon_color}]}>
                         <Text style={styles.port}>
                             J-j
                         </Text>
@@ -93,7 +97,7 @@ export default function Alfabeto(){
                             Umb
                         </Text>
                     </View>
-                    <View style={styles.letra}>
+                    <View style={[styles.letra, {borderColor: temaActual.border_color, backgroundColor: temaActual.btn_icon_color}]}>
                         <Text style={styles.port}>
                             K-k
                         </Text>
@@ -101,7 +105,7 @@ export default function Alfabeto(){
                             Umb
                         </Text>
                     </View>
-                    <View style={styles.letra}>
+                    <View style={[styles.letra, {borderColor: temaActual.border_color, backgroundColor: temaActual.btn_icon_color}]}>
                         <Text style={styles.port}>
                             L-l
                         </Text>
@@ -109,7 +113,7 @@ export default function Alfabeto(){
                             Umb
                         </Text>
                     </View>
-                    <View style={styles.letra}>
+                    <View style={[styles.letra, {borderColor: temaActual.border_color, backgroundColor: temaActual.btn_icon_color}]}>
                         <Text style={styles.port}>
                             M-m
                         </Text>
@@ -117,7 +121,7 @@ export default function Alfabeto(){
                             Umb
                         </Text>
                     </View>
-                    <View style={styles.letra}>
+                    <View style={[styles.letra, {borderColor: temaActual.border_color, backgroundColor: temaActual.btn_icon_color}]}>
                         <Text style={styles.port}>
                             N-n
                         </Text>
@@ -125,7 +129,7 @@ export default function Alfabeto(){
                             Umb
                         </Text>
                     </View>
-                    <View style={styles.letra}>
+                    <View style={[styles.letra, {borderColor: temaActual.border_color, backgroundColor: temaActual.btn_icon_color}]}>
                         <Text style={styles.port}>
                             O-o
                         </Text>
@@ -133,7 +137,7 @@ export default function Alfabeto(){
                             Umb
                         </Text>
                     </View>
-                    <View style={styles.letra}>
+                    <View style={[styles.letra, {borderColor: temaActual.border_color, backgroundColor: temaActual.btn_icon_color}]}>
                         <Text style={styles.port}>
                             P-p
                         </Text>
@@ -141,7 +145,7 @@ export default function Alfabeto(){
                             Umb
                         </Text>
                     </View>
-                    <View style={styles.letra}>
+                    <View style={[styles.letra, {borderColor: temaActual.border_color, backgroundColor: temaActual.btn_icon_color}]}>
                         <Text style={styles.port}>
                             Q-q
                         </Text>
@@ -149,7 +153,7 @@ export default function Alfabeto(){
                             Umb
                         </Text>
                     </View>
-                    <View style={styles.letra}>
+                    <View style={[styles.letra, {borderColor: temaActual.border_color, backgroundColor: temaActual.btn_icon_color}]}>
                         <Text style={styles.port}>
                             R-r
                         </Text>
@@ -157,7 +161,7 @@ export default function Alfabeto(){
                             Umb
                         </Text>
                     </View>
-                    <View style={styles.letra}>
+                    <View style={[styles.letra, {borderColor: temaActual.border_color, backgroundColor: temaActual.btn_icon_color}]}>
                         <Text style={styles.port}>
                             S-s
                         </Text>
@@ -165,7 +169,7 @@ export default function Alfabeto(){
                             Umb
                         </Text>
                     </View>
-                    <View style={styles.letra}>
+                    <View style={[styles.letra, {borderColor: temaActual.border_color, backgroundColor: temaActual.btn_icon_color}]}>
                         <Text style={styles.port}>
                             T-t
                         </Text>
@@ -173,7 +177,7 @@ export default function Alfabeto(){
                             Umb
                         </Text>
                     </View>
-                    <View style={styles.letra}>
+                    <View style={[styles.letra, {borderColor: temaActual.border_color, backgroundColor: temaActual.btn_icon_color}]}>
                         <Text style={styles.port}>
                             U-u
                         </Text>
@@ -181,7 +185,7 @@ export default function Alfabeto(){
                             Umb
                         </Text>
                     </View>
-                    <View style={styles.letra}>
+                    <View style={[styles.letra, {borderColor: temaActual.border_color, backgroundColor: temaActual.btn_icon_color}]}>
                         <Text style={styles.port}>
                             V-v
                         </Text>
@@ -189,7 +193,7 @@ export default function Alfabeto(){
                             Umb
                         </Text>
                     </View>
-                    <View style={styles.letra}>
+                    <View style={[styles.letra, {borderColor: temaActual.border_color, backgroundColor: temaActual.btn_icon_color}]}>
                         <Text style={styles.port}>
                             W-w
                         </Text>
@@ -197,7 +201,7 @@ export default function Alfabeto(){
                             Umb
                         </Text>
                     </View>
-                    <View style={styles.letra}>
+                    <View style={[styles.letra, {borderColor: temaActual.border_color, backgroundColor: temaActual.btn_icon_color}]}>
                         <Text style={styles.port}>
                             X-x
                         </Text>
@@ -205,7 +209,7 @@ export default function Alfabeto(){
                             Umb
                         </Text>
                     </View>
-                    <View style={styles.letra}>
+                    <View style={[styles.letra, {borderColor: temaActual.border_color, backgroundColor: temaActual.btn_icon_color}]}>
                         <Text style={styles.port}>
                             Y-y
                         </Text>
@@ -213,7 +217,7 @@ export default function Alfabeto(){
                             Umb
                         </Text>
                     </View>
-                    <View style={styles.letra}>
+                    <View style={[styles.letra, {borderColor: temaActual.border_color, backgroundColor: temaActual.btn_icon_color}]}>
                         <Text style={styles.port}>
                             Z-z
                         </Text>
@@ -243,7 +247,7 @@ const styles = StyleSheet.create({
         width: 80,
         height: 80,
         borderRadius: 80/2,
-        backgroundColor: primary_color,
+        borderWidth: 1,
         padding: 10,
         marginHorizontal: 5,
         marginVertical: 10,

@@ -5,17 +5,19 @@ import {
 } from 'react-native'
 
 import {FontAwesome5} from '@expo/vector-icons'
-import { detalhes } from '../Cores'
+import ThemeContext from '../../Contexts/ThemeContext'
+import {useContext} from 'react'
 
-export default function AppLogo( {color, sizeIcon, sizeText} ){
+export default function AppLogo(){
+    const { tema, temaActual } = useContext(ThemeContext)
     return(
         <View style={styles.container}>
             <Text style={[styles.text, {
-                fontSize: sizeText
+                color: temaActual.detalhes_color
             }]}>
                 OKUTANGA
             </Text>
-            <FontAwesome5 name='user-graduate' size={sizeIcon ? sizeIcon: 30} color={color}/>
+            <FontAwesome5 name='user-graduate' size={30} color={temaActual.detalhes_color}/>
         </View>
     )
 }
@@ -32,7 +34,6 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: detalhes,
         marginRight: 10,
     }
 })

@@ -7,12 +7,13 @@ import {
     SafeAreaView,
     TouchableOpacity
 } from 'react-native';
-import {dark_color, detalhes, primary_color, secondary_color} from '../../Components/Cores'
-import {useState} from 'react'
+import {useState, useContext} from 'react'
+import ThemeContext from '../../Contexts/ThemeContext'
 
 
 
 export default function Tradutor(){
+    const {temaActual } = useContext(ThemeContext)
     const [frase, setFrase] = useState('')
     const [traducao, setTraducao] = useState('') 
     const [responseMsg, setResponseMsg] = useState('') 
@@ -35,40 +36,41 @@ export default function Tradutor(){
     }
 
     return(
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={[styles.container,{backgroundColor: temaActual.background_color}]}>
             <View style={styles.form}>
                 <View style={styles.intoContainer}>
                     <View style={styles.header}>
-                        <Text style={styles.text}>
+                        <Text style={[styles.text, {color:temaActual.text_color}]}>
                             Frase para traduzir
                         </Text>
 
-                        <TouchableOpacity style={styles.translateBtn} activeOpacity={0.7} onPress={()=> buscarTraducao(frase)}>
+                        <TouchableOpacity style={[styles.translateBtn, {backgroundColor: temaActual.detalhes_color}]} activeOpacity={0.7} onPress={()=> buscarTraducao(frase)}>
                             <Text style={styles.translateText}>
                                 Traduzir
                             </Text>
                         </TouchableOpacity>
                     </View>
                     <TextInput 
-                        style={styles.intoInput}
-                        selectionColor={dark_color}
+                        style={[styles.intoInput, {borderColor: temaActual.border_color, color: temaActual.text_color}]}
+                        selectionColor='#000'
                         placeholder='insira frases simples (Saudações, apresentação pessoal, perguntas do dia a dia...)'
+                        placeholderTextColor={temaActual.text_color}
                         value={frase}
                         onChangeText={setFrase}
                         autoFocus={true}
                     />
                 </View>
                 <View style={styles.resultContainer}>
-                    <Text style={styles.text}>
+                    <Text style={[styles.text, {color: temaActual.text_color}]}>
                         Frase traduzida
                     </Text>
-                    <View style={styles.result}>
+                    <View style={[styles.result, {borderColor: temaActual.border_color}]}>
                         {
                             traducao? 
                             (
-                                <Text style={styles.traducao}>{traducao}</Text>
+                                <Text style={[styles.traducao, {color: temaActual.text_color}]}>{traducao}</Text>
                             ): (
-                                <Text style={styles.traducao}>{responseMsg}</Text>
+                                <Text style={[styles.traducao, {color: temaActual.text_color}]}>{responseMsg}</Text>
                             )
                         }
                     </View>
@@ -92,19 +94,18 @@ const styles = StyleSheet.create({
         flex: 1
     },
     translateBtn: {
-        backgroundColor: detalhes,
         marginRight: 20,
         height: 40,
         width: 100,
         justifyContent: 'center',
         alignItems: 'center',
         padding: 5,
-        borderRadius: 8
+        borderRadius: 8,
     },
     translateText: {
-        color: primary_color,
         fontWeight: 'bold',
-        fontSize: 16
+        fontSize: 16,
+        color: '#FFFF'
     },
     intoContainer: {
         marginVertical: 10,
@@ -117,11 +118,10 @@ const styles = StyleSheet.create({
     },
     intoInput: {
         borderWidth: 1,
-        borderColor: secondary_color,
         padding: 20,
         textAlignVertical: 'top',
         flex: 1,
-        fontSize: 20
+        fontSize: 20,
     },
     resultContainer: {
         flex: 1
@@ -129,7 +129,6 @@ const styles = StyleSheet.create({
     result: {
         flex: 1,
         borderWidth: 1,
-        borderColor: secondary_color,
         padding: 20,
     },
     traducao: {

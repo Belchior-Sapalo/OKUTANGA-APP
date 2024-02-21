@@ -20,18 +20,24 @@ import AppLogo from '../AppLogo';
 import Contactar from '../../Screens/Contactar';
 import Adm from '../../Screens/AdmForm';
 import StackRouter from '../StackRouts';
-import {detalhes} from '../Cores/index'
+import ThemeContext from '../../Contexts/ThemeContext';
+import {useContext} from 'react'
 
 const MenuToggler = ()=>{
+    const { temaActual } = useContext(ThemeContext)
     const navigation = useNavigation();
 
     return(
         <View style={styles.togglerContainer}>
+            <StatusBar 
+                barStyle={temaActual.statusBar_content_color}
+                backgroundColor={temaActual.header_color}
+            />
             <TouchableOpacity
                 onPress={()=> navigation.toggleDrawer()}
                 activeOpacity={1}
             >
-                <FontAwesome name='bars' size={30} color={detalhes}/>
+                <FontAwesome name='bars' size={30} color={temaActual.detalhes_color}/>
             </TouchableOpacity>
         </View>
     )
@@ -39,19 +45,20 @@ const MenuToggler = ()=>{
 
 const Logo = ()=>{
     return(
-        <AppLogo sizeText={20} color={detalhes}/>
+        <AppLogo/>
     )
 }
 
 const Drawer = createDrawerNavigator();
 
 export default function DrawerRouter(){
+    const { tema, mudarClaro, mudarEscuro, temaActual } = useContext(ThemeContext)
     return(
         <Drawer.Navigator
             initialRouteName='Home'
             screenOptions={{
                 headerStyle: {
-                    backgroundColor: '#FFFF',
+                    backgroundColor: temaActual.header_color,
                 },
                 headerTitleStyle: {
                     fontSize: 20
@@ -59,16 +66,18 @@ export default function DrawerRouter(){
                 headerRight: Logo,
                 headerLeft: (props)=> <MenuToggler {...props} />,
                 drawerStyle: {
+                    backgroundColor: temaActual.drawer_color
                 },
                 drawerLabelStyle:{
                     fontSize: 18,
+                    color: temaActual.text_color
                 },
                 drawerItemStyle: {
-                    borderBottomColor: '#eaeaea',
+                    borderBottomColor: temaActual.border_color,
                     borderBottomWidth: 1,
                 },
-                drawerActiveBackgroundColor: '#eaeaea',
-                drawerActiveTintColor: detalhes
+                drawerActiveBackgroundColor: temaActual.active_link_color,
+                drawerActiveTintColor: temaActual.icon_link_color_active
             }}
         >
             <Drawer.Screen name='Home'component={StackRouter}
@@ -78,7 +87,7 @@ export default function DrawerRouter(){
                         drawerIcon: ({focused, color})=>(
                             <FontAwesome 
                                 name='home'
-                                color={focused ? detalhes: color}
+                                color={focused ? temaActual.icon_link_color_active: temaActual.icons_color}
                                 size={25}
                             />
                         )
@@ -94,7 +103,7 @@ export default function DrawerRouter(){
                         drawerIcon: ({focused, size, color})=>(
                             <FontAwesome 
                                 name='phone'
-                                color={focused ? detalhes: color}  
+                                color={focused ? temaActual.icon_link_color_active: temaActual.icons_color}  
                                 size={25}
                             />
                         )
@@ -110,7 +119,7 @@ export default function DrawerRouter(){
                         drawerIcon: ({focused, size, color})=>(
                             <FontAwesome 
                                 name='gear'
-                                color={focused ? detalhes: color}  
+                                color={focused ? temaActual.icon_link_color_active: temaActual.icons_color}  
                                 size={25}
                             />
                         )
@@ -126,7 +135,7 @@ export default function DrawerRouter(){
                         drawerIcon: ({focused, size, color})=>(
                             <MaterialIcons 
                                 name='admin-panel-settings'
-                                color={focused ? detalhes: color}  
+                                color={focused ? temaActual.icon_link_color_active: temaActual.icons_color}  
                                 size={25}
                             />
                         )
