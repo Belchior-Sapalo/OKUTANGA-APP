@@ -10,7 +10,7 @@ import {
 
 import {FontAwesome, MaterialIcons} from '@expo/vector-icons'
 import React, {useState, useCallback, useContext} from 'react'
-import {useFocusEffect} from '@react-navigation/native'
+import {useFocusEffect, useNavigation} from '@react-navigation/native'
 import ThemeContext from '../../Contexts/ThemeContext'
 
 export default function Adm(){
@@ -21,10 +21,14 @@ export default function Adm(){
     const [autenticado, setAutenticado] = useState(false)
     const [admNome, setAdmNome] = useState('')
     const [chave, setChave] = useState(0)
+    const navigation = useNavigation()
 
     useFocusEffect(
         useCallback(()=>{
-           setChave(prevChave=> prevChave + 1)
+           setChave(prevState => prevState + 1)
+           setEmail('')
+           setSenha('')
+           setResponse('')
         }, [])
     )
 
@@ -43,15 +47,21 @@ export default function Adm(){
             body: JSON.stringify(dados)
         })
         .then((response)=>response.json())
-        .then((json)=>{setResponse( json.msg ? json.msg: '' ); setAutenticado(json.auth); setAdmNome(json.nome)})
+        .then((json)=>{setResponse( json.msg ? json.msg: '' ); 
+            if(json.auth){
+                navigation.navigate('PainelAdm')
+            }else{
+                navigation.navigate('Admistrador')
+            }
+        })
         .catch((error)=>alert('error'))
     }
 
     const responseMsg = (res)=>{
         return(
-            <View style={styles.responseMsgContainer}>
+            <View style={[styles.responseMsgContainer, {backgroundColor: temaActual.error_color}]}>
                 <MaterialIcons name='error' size={40} color='#DF6E1A'/>
-                <Text style={[styles.responseMsgText, {backgroundColor:temaActual.error_color}]}>
+                <Text style={[styles.responseMsgText, {color:temaActual.text_color}]}>
                     {
                         res
                     }
@@ -60,20 +70,16 @@ export default function Adm(){
         )
     }
 
+    
     return(
         <SafeAreaView style={[styles.admInputContainer, {backgroundColor: temaActual.background_color}]} key={chave}>
              <StatusBar 
                 barStyle={temaActual.statusBar_content_color}
                 backgroundColor={temaActual.header_color}
             />
-            <View style={styles.response}>
+            <View>
                 {
-                    response ? (
-                        responseMsg(response)
-                    ): (
-                        <Text>
-                        </Text>
-                    )
+                    response ? (<Text>{responseMsg(response)}</Text>): (<Text></Text>)
                 }
             </View>
             <View style={[styles.admIconContainer, {borderColor: temaActual.border_color}]}>
@@ -129,6 +135,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        marginTop: 20
     },
     text: {
         fontSize: 20,
@@ -160,12 +167,12 @@ const styles = StyleSheet.create({
     },
     responseMsgContainer: {
         borderRadius: 8,
+        width: 300,
         padding: 10,
-        width: '100%',
         marginVertical: 10,
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 20
+        marginBottom: 20,
     },
     responseMsgText: {
         fontSize: 20,

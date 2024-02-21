@@ -2,14 +2,26 @@ import {
     View,
     Text,
     StyleSheet,
-    StatusBar
+    StatusBar,
+    Button
 } from 'react-native';
+import {useNavigation} from '@react-navigation/native'
 
 export default function PainelAdm(){
+    const navigation = useNavigation()
+    function logOut(){
+        navigation.navigate('Admistrador')
+    }
+    
     return(
         <View style={styles.container}>
             <Text style={styles.text}>
-                Tradutor page
+                Painel Administrativo
+
+                <Button 
+                    title='Log Out'
+                    onPress={()=>logOut()}
+                />
             </Text>
         </View>
     )
