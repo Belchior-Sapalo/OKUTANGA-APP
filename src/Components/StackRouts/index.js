@@ -20,7 +20,7 @@ export default function StackRouter(){
             <Stack.Screen name='Alfabeto'component={Alfabeto} options={{headerTitle: 'Alfabeto'}} />
             <Stack.Screen name='Tradutor'component={Tradutor} options={{headerTitle: 'Tradutor'}} />
             <Stack.Screen name='Sobre_a_lingua'component={SobreLingua} options={{headerTitle: 'Sobre a língua'}} />
-            <Stack.Screen name='PainelAdm'component={PainelAdm} options={{headerTitle: 'Painel do Administrador'}} />
+            <Stack.Screen name='PainelAdm'component={PainelAdm} options={{headerShown: false}} />
         </Stack.Navigator>
     )
 }

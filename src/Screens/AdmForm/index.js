@@ -5,7 +5,8 @@ import {
     StatusBar,
     TextInput,
     TouchableOpacity,
-    SafeAreaView
+    SafeAreaView,
+    Button
 } from 'react-native';
 
 import {FontAwesome, MaterialIcons} from '@expo/vector-icons'
@@ -91,8 +92,8 @@ export default function Adm(){
            <TextInput
                 placeholder='Email' 
                 placeholderTextColor={temaActual.text_color}
-                selectionColor='rgba(0,0,0,.2)'
-                style={[styles.input, {borderColor: temaActual.border_color}]}
+                selectionColor={temaActual.detalhes_color} 
+                style={[styles.input, {borderColor: temaActual.border_color, color: temaActual.text_color}]}
                 autoFocus={true}
                 value={email}
                 onChangeText={setEmail}
@@ -102,8 +103,8 @@ export default function Adm(){
            <TextInput
                 placeholder='Senha'
                 placeholderTextColor={temaActual.text_color}
-                selectionColor='rgba(0,0,0,.2)' 
-                style={[styles.input, {borderColor: temaActual.border_color}]}
+                selectionColor={temaActual.detalhes_color} 
+                style={[styles.input, {borderColor: temaActual.border_color, color: temaActual.text_color}]}
                 value={senha}
                 onChangeText={setSenha}
                 secureTextEntry
@@ -117,7 +118,6 @@ export default function Adm(){
                     Enviar
                 </Text>
            </TouchableOpacity>
-
         </SafeAreaView>
             
     )
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 20
+        marginTop: 20,
     },
     text: {
         fontSize: 20,

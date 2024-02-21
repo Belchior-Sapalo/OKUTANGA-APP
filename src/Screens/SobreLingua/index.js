@@ -19,7 +19,7 @@ export default function SobreLingua(){
     }
     return(
         <SafeAreaView style={[styles.container, {backgroundColor: temaActual.background_color}]}>
-            <ScrollView style={styles.content} showsHorizontalScrollIndicator={false}>
+            <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
             <View style={styles.sec}>
                 <Text style={[styles.title, {color: temaActual.text_color}]}>
                     Língua umbundo
