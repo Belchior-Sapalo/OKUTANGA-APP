@@ -68,7 +68,7 @@ export default function Links(){
                     <TouchableOpacity 
                         style={[styles.btn, {backgroundColor: temaActual.background_color, borderColor: temaActual.border_color}]} 
                         activeOpacity={.7} 
-                        onPress={()=> navigation.navigate('Gramatica')}
+                        onPress={()=> abrirLink()}
                     >
                         <View 
                             style={[styles.btnIcon, {backgroundColor: temaActual.background_color, borderColor: temaActual.detalhes_color}]}
