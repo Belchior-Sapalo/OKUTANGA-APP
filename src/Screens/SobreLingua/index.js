@@ -50,7 +50,7 @@ export default function SobreLingua(){
             <View style={styles.fontes}>
                 <TouchableOpacity activeOpacity={.7} onPress={()=> abrirLink()} style={styles.link}>
                     <Feather name='external-link' size={20} color='#2B7595'/>
-                    <Text style={styles.linkName}>
+                    <Text style={[styles.linkName, {color: temaActual.text_color}]}>
                         Wikpedia
                     </Text>
                 </TouchableOpacity>
