@@ -176,7 +176,7 @@ export default function PainelAdm(){
         <SafeAreaView style={[styles.container, {backgroundColor: temaActual.background_color, borderColor: temaActual.border_color}]} key={chave}>
 
 
-            <View style={[styles.header, {borderTopColor: temaActual.border_color}]}>
+            <View style={[styles.header]}>
                 <Text style={[styles.admName, {color: temaActual.text_color}]}>
                     Belchior Sapalo
                 </Text>
@@ -191,7 +191,7 @@ export default function PainelAdm(){
                     <Text 
                         style={[styles.appInfoText, {}]}
                     >
-                        Palavras existentes
+                        Palavras
                     </Text>
                     <Text style={[styles.numIten]}>
                         {
@@ -203,7 +203,7 @@ export default function PainelAdm(){
                     <Text 
                         style={[styles.appInfoText, {}]}
                     >
-                        Frases existentes
+                        Frases
                     </Text>
                     <Text style={[styles.numIten]}>
                         {
@@ -717,7 +717,6 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     header: {
-        borderTopWidth: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -769,14 +768,13 @@ const styles = StyleSheet.create({
     },
     appInfo: {
         marginVertical: 10,
-        backgroundColor: '#007566',
         height: 150,
-        width: 150,
         borderRadius: 8,
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 1,
-        flex: 1
+        flex: 1,
+        marginHorizontal: 5
     },
     appInfoText: {
         fontSize: 18,
