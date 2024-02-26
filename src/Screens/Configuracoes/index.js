@@ -25,7 +25,7 @@ export default function Configuracoes(){
                 <View style={[styles.configOptionsContainer, {backgroundColor: temaActual.configs_links_color}]}>
                     <View style={[styles.configOption, {borderBottomWidth: 0}]} activeOpacity={1}>
                         <View style={styles.configOptionInfo}>
-                            <MaterialIcons name='dark-mode' size={30} color={temaActual.icons_color}/>
+                            <MaterialCommunityIcons name='theme-light-dark' size={30} color={temaActual.icons_color}/>
 
                             <Text style={[styles.configOptionText, {color:temaActual.text_color}]}>
                                 Modo escuro
