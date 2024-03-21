@@ -21,7 +21,11 @@ import Contactar from '../../Screens/Contactar';
 import Adm from '../../Screens/AdmForm';
 import StackRouter from '../StackRouts';
 import ThemeContext from '../../Contexts/ThemeContext';
-import {useContext} from 'react'
+import {useContext, useEffect, useState} from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import PainelAdm from '../../Screens/PainelAdm';
+import AuthContext from '../../Contexts/AuthContext';
+
 
 const MenuToggler = ()=>{
     const { temaActual } = useContext(ThemeContext)
@@ -52,6 +56,7 @@ const Logo = ()=>{
 const Drawer = createDrawerNavigator();
 
 export default function DrawerRouter(){
+    const {token} = useContext(AuthContext)
     const { tema, mudarClaro, mudarEscuro, temaActual } = useContext(ThemeContext)
     return(
         <Drawer.Navigator
@@ -127,8 +132,8 @@ export default function DrawerRouter(){
                 }
             />
             <Drawer.Screen 
-                name='Admistrador'
-                component={Adm}
+                name='Administrador'
+                component={token? PainelAdm: Adm}
                 options={
                     {
                         headerTitle: '',

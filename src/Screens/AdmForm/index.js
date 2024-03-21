@@ -13,9 +13,11 @@ import {FontAwesome, MaterialIcons} from '@expo/vector-icons'
 import React, {useState, useCallback, useContext} from 'react'
 import {useFocusEffect, useNavigation} from '@react-navigation/native'
 import ThemeContext from '../../Contexts/ThemeContext'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import AuthContext from '../../Contexts/AuthContext';
 
 export default function Adm(){
-    const {temaActual } = useContext(ThemeContext)
+    const {temaActual} = useContext(ThemeContext)
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
     const [response, setResponse] = useState(null)
@@ -23,6 +25,7 @@ export default function Adm(){
     const [admNome, setAdmNome] = useState('')
     const [chave, setChave] = useState(0)
     const navigation = useNavigation()
+    const {token, Login} = useContext(AuthContext)
 
     useFocusEffect(
         useCallback(()=>{
@@ -33,8 +36,17 @@ export default function Adm(){
         }, [])
     )
 
+    async function setToken(token){
+        try{
+            await AsyncStorage.setItem('token', token)
+            alert('token salvo com sucesso')
+        }catch(error){
+            alert(error)
+        }
+    }
+
     function login(){
-        const url = 'http://192.168.43.58:3000/login';
+        const url = 'http://192.168.43.58:3000/adm/login';
         const dados = {
             email: email,
             senha: senha
@@ -50,19 +62,20 @@ export default function Adm(){
         .then((response)=>response.json())
         .then((json)=>{setResponse( json.msg ? json.msg: '' ); 
             if(json.auth){
+                Login(json.token)
                 navigation.navigate('PainelAdm')
             }else{
-                navigation.navigate('Admistrador')
+                navigation.navigate('Administrador')
             }
         })
-        .catch((error)=>alert('error'))
+        .catch((error)=>alert(error))
     }
 
     const responseMsg = (res)=>{
         return(
-            <View style={[styles.responseMsgContainer, {backgroundColor: temaActual.error_color}]}>
+            <View style={[styles.responseMsgContainer]}>
                 <MaterialIcons name='error' size={40} color='#DF6E1A'/>
-                <Text style={[styles.responseMsgText, {color:temaActual.text_color}]}>
+                <Text style={[styles.responseMsgText, {color:'#FFCCCC'}]}>
                     {
                         res
                     }
@@ -71,7 +84,6 @@ export default function Adm(){
         )
     }
 
-    
     return(
         <SafeAreaView style={[styles.admInputContainer, {backgroundColor: temaActual.background_color}]} key={chave}>
              <StatusBar 

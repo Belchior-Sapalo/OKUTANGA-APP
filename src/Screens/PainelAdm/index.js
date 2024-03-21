@@ -10,10 +10,12 @@ import {
     TextInput
 } from 'react-native';
 import {useContext, useEffect, useState, useCallback} from 'react'
-import {useNavigation, useFocusEffect} from '@react-navigation/native'
+import {useNavigation, useFocusEffect, CommonActions} from '@react-navigation/native'
 import ThemeContext from '../../Contexts/ThemeContext'
+import AuthContext from '../../Contexts/AuthContext';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import {Entypo, MaterialCommunityIcons, MaterialIcons, FontAwesome} from '@expo/vector-icons'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function PainelAdm(){
     const [numPalavras, setNumPalavras] = useState(0)
@@ -38,11 +40,16 @@ export default function PainelAdm(){
     const [modalDelFrase, setModalDelFrase] = useState(false)
     const [modalDelTodasFrase, setModalDelTodasFrase] = useState(false)
     const [showModalFrase, setShowModalFrase] = useState(false)
+    const {token, Logout} = useContext(AuthContext)
     const [chave, setChave] = useState(0)
     const navigation = useNavigation()
+
     function logOut(){
-        navigation.navigate('Admistrador')
-        navigation.pop()
+        Logout()
+        navigation.dispatch(CommonActions.reset({
+            index: 0,
+            routes: [{ name: 'Home' }],
+          }));
     }
 
     useFocusEffect(
@@ -76,8 +83,9 @@ export default function PainelAdm(){
         },[]
     )
 
+
     async function adicionarPalavra(){
-        const url = 'http://192.168.43.58:3000/salvarPalavra';
+        const url = 'http://192.168.43.58:3000/adm/adicionar_palavra';
         const dados = {
             'palavraUmbundo': novaPalavraUmbundo,
             'significado': novaPalavraPortugues
@@ -86,7 +94,8 @@ export default function PainelAdm(){
         await fetch(url, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(dados)
         })
@@ -96,7 +105,7 @@ export default function PainelAdm(){
 
     }
     async function deletarPalavra(){
-        const url = 'http://192.168.43.58:3000/deletarPalavra';
+        const url = 'http://192.168.43.58:3000/adm/deletar_palavra';
         const dado = {
             'palavra': palavraParaDeletar
         }
@@ -104,7 +113,8 @@ export default function PainelAdm(){
         await fetch(url, {
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(dado)
         })
@@ -113,7 +123,7 @@ export default function PainelAdm(){
 
     }
     async function adicionarFrase(){
-        const url = 'http://192.168.43.58:3000/salvarFrase';
+        const url = 'http://192.168.43.58:3000/adm/adicionar_frase';
         const dados = {
             'frase': novaFrase,
             'traducao': novaTraducao
@@ -122,7 +132,8 @@ export default function PainelAdm(){
         await fetch(url, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(dados)
         })
@@ -132,7 +143,7 @@ export default function PainelAdm(){
 
     }
     async function deletarFrase(){
-        const url = 'http://192.168.43.58:3000/deletarFrase';
+        const url = 'http://192.168.43.58:3000/adm/deletar_frase';
         const dado = {
             'frase': fraseParaDeletar
         }
@@ -140,7 +151,8 @@ export default function PainelAdm(){
         await fetch(url, {
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(dado)
         })
@@ -150,22 +162,24 @@ export default function PainelAdm(){
     }
 
     async function deletarTodasFrases(){
-        const url = 'http://192.168.43.58:3000/deletarTodasFrases'
+        const url = 'http://192.168.43.58:3000/adm/deletar_todas_frases'
         await fetch(url, {
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             }
         })
         .then((res)=>res.json())
         .then((json)=>setResponseDelTodasFrase(json.msg))
     }
     async function deletarTodasPalavras(){
-        const url = 'http://192.168.43.58:3000/deletarTodasPalavra'
+        const url = 'http://192.168.43.58:3000/adm/deletar_todas_palavra'
         await fetch(url, {
             method: 'DELETE',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             }
         })
         .then((res)=>res.json())
